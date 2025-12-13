@@ -18,7 +18,7 @@ export default function Home() {
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl">
             한밭대학교 컴퓨터공학과 학부생
             <br />
-            웹 개발과 새로운 기술에 관심이 많습니다.
+            클라우드 인프라와 네트워크 기술에 관심이 많습니다.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg">
