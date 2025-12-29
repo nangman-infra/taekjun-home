@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
@@ -29,6 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script
+          src="https://analytics.nangman.cloud/api/script.js"
+          data-site-id="bf3ab2d9c324"
+          strategy="afterInteractive"
+        />
         <Navigation />
         <main className="min-h-[calc(100vh-4rem)]">{children}</main>
         <Footer />
