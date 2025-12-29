@@ -18,6 +18,10 @@ COPY pnpm-workspace.yaml ./
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/pnpm-lock.yaml* ./
 COPY frontend/ ./frontend/
+
+# pnpm install을 다시 실행하여 frontend의 node_modules 심볼릭 링크 생성
+RUN pnpm install --frozen-lockfile --filter frontend
+
 WORKDIR /app/frontend
 
 ENV NEXT_TELEMETRY_DISABLED 1
