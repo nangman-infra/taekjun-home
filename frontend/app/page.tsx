@@ -33,7 +33,7 @@ export default function Home() {
 
       {/* Quick Contact */}
       <section className="border-t py-12">
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2">
           <div className="space-y-2">
             <h3 className="font-semibold">Email</h3>
             <a
@@ -41,15 +41,6 @@ export default function Home() {
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               jtj72272503@gmail.com
-            </a>
-          </div>
-          <div className="space-y-2">
-            <h3 className="font-semibold">Phone</h3>
-            <a
-              href="tel:010-7227-2503"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              010-7227-2503
             </a>
           </div>
           <div className="space-y-2">

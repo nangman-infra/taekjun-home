@@ -107,15 +107,6 @@ export default function ResumePage() {
                 </a>
               </div>
               <div>
-                <h3 className="mb-1 font-semibold">Phone</h3>
-                <a
-                  href="tel:010-7227-2503"
-                  className="text-primary hover:underline"
-                >
-                  010-7227-2503
-                </a>
-              </div>
-              <div>
                 <h3 className="mb-1 font-semibold">GitHub</h3>
                 <a
                   href="https://github.com/iamtaekjun"
