@@ -1,60 +1,43 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface VelogPost {
   title: string;
-  description: string;
-  date: string;
+  short_description: string;
+  thumbnail: string | null;
+  released_at: string;
   tags: string[];
-  link: string;
+  url_slug: string;
 }
 
 async function fetchVelogPosts(): Promise<VelogPost[]> {
-  const res = await fetch("https://v2.velog.io/rss/@iamtaekjun", {
+  const res = await fetch("https://velog.io/graphql", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+        query {
+          posts(username: "iamtaekjun") {
+            title
+            short_description
+            thumbnail
+            released_at
+            tags
+            url_slug
+          }
+        }
+      `,
+    }),
     next: { revalidate: 3600 },
   });
 
-  const xml = await res.text();
+  const json = await res.json();
+  return json.data.posts;
+}
 
-  const items: VelogPost[] = [];
-  const itemRegex = /<item>([\s\S]*?)<\/item>/g;
-  let match;
-
-  while ((match = itemRegex.exec(xml)) !== null) {
-    const itemXml = match[1];
-
-    const title =
-      itemXml.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/)?.[1] ?? "";
-    const link = itemXml.match(/<link>(.*?)<\/link>/)?.[1] ?? "";
-    const pubDate = itemXml.match(/<pubDate>(.*?)<\/pubDate>/)?.[1] ?? "";
-    const desc =
-      itemXml.match(
-        /<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>/
-      )?.[1] ?? "";
-
-    const tags: string[] = [];
-    const catRegex = /<category><!\[CDATA\[(.*?)\]\]><\/category>/g;
-    let catMatch;
-    while ((catMatch = catRegex.exec(itemXml)) !== null) {
-      tags.push(catMatch[1]);
-    }
-
-    // 날짜 포맷팅
-    const dateObj = new Date(pubDate);
-    const date = `${dateObj.getFullYear()}.${String(dateObj.getMonth() + 1).padStart(2, "0")}.${String(dateObj.getDate()).padStart(2, "0")}`;
-
-    // description에서 HTML 태그 제거 후 150자로 자르기
-    const cleanDesc = desc.replace(/<[^>]*>/g, "").slice(0, 150);
-
-    items.push({
-      title,
-      description: cleanDesc ? cleanDesc + "..." : "",
-      date,
-      tags,
-      link,
-    });
-  }
-
-  return items;
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
 }
 
 export default async function BlogPage() {
@@ -74,34 +57,52 @@ export default async function BlogPage() {
       <div className="space-y-8">
         {posts.map((post) => (
           <article
-            key={post.link}
-            className="group rounded-lg border p-6 transition-all hover:shadow-md"
+            key={post.url_slug}
+            className="group overflow-hidden rounded-lg border transition-all hover:shadow-md"
           >
-            <div className="mb-2 flex items-center gap-4 text-sm text-muted-foreground">
-              <time>{post.date}</time>
-              {post.tags.length > 0 && (
-                <div className="flex gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
             <Link
-              href={post.link}
+              href={`https://velog.io/@iamtaekjun/${post.url_slug}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="block"
+              className="flex flex-col sm:flex-row"
             >
-              <h2 className="mb-2 text-2xl font-semibold group-hover:text-primary">
-                {post.title}
-              </h2>
-              <p className="text-muted-foreground">{post.description}</p>
+              {/* Thumbnail */}
+              {post.thumbnail && (
+                <div className="relative h-48 w-full shrink-0 sm:h-auto sm:w-52">
+                  <Image
+                    src={post.thumbnail}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 208px"
+                  />
+                </div>
+              )}
+
+              {/* Content */}
+              <div className="flex flex-1 flex-col justify-center p-6">
+                <div className="mb-2 flex items-center gap-4 text-sm text-muted-foreground">
+                  <time>{formatDate(post.released_at)}</time>
+                  {post.tags.length > 0 && (
+                    <div className="flex gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <h2 className="mb-2 text-2xl font-semibold group-hover:text-primary">
+                  {post.title}
+                </h2>
+                <p className="text-muted-foreground">
+                  {post.short_description}
+                </p>
+              </div>
             </Link>
           </article>
         ))}
