@@ -1,30 +1,48 @@
+import Image from "next/image";
 import Link from "next/link";
 
-const BLOG_POSTS = [
-  {
-    id: 1,
-    title: "블로그 포스트 제목 1",
-    description: "블로그 포스트 설명이 들어갈 자리입니다.",
-    date: "2024.12.13",
-    tags: ["AWS", "DevOps"],
-  },
-  {
-    id: 2,
-    title: "블로그 포스트 제목 2",
-    description: "블로그 포스트 설명이 들어갈 자리입니다.",
-    date: "2024.12.10",
-    tags: ["Docker", "Kubernetes"],
-  },
-  {
-    id: 3,
-    title: "블로그 포스트 제목 3",
-    description: "블로그 포스트 설명이 들어갈 자리입니다.",
-    date: "2024.12.05",
-    tags: ["Python", "Backend"],
-  },
-];
+interface VelogPost {
+  title: string;
+  short_description: string;
+  thumbnail: string | null;
+  released_at: string;
+  tags: string[];
+  url_slug: string;
+}
 
-export default function BlogPage() {
+async function fetchVelogPosts(): Promise<VelogPost[]> {
+  const res = await fetch("https://velog.io/graphql", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+        query {
+          posts(username: "iamtaekjun") {
+            title
+            short_description
+            thumbnail
+            released_at
+            tags
+            url_slug
+          }
+        }
+      `,
+    }),
+    next: { revalidate: 3600 },
+  });
+
+  const json = await res.json();
+  return json.data.posts;
+}
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+}
+
+export default async function BlogPage() {
+  const posts = await fetchVelogPosts();
+
   return (
     <div className="container mx-auto max-w-4xl px-4 py-16">
       {/* Header */}
@@ -37,29 +55,54 @@ export default function BlogPage() {
 
       {/* Blog Posts List */}
       <div className="space-y-8">
-        {BLOG_POSTS.map((post) => (
+        {posts.map((post) => (
           <article
-            key={post.id}
-            className="group rounded-lg border p-6 transition-all hover:shadow-md"
+            key={post.url_slug}
+            className="group overflow-hidden rounded-lg border transition-all hover:shadow-md"
           >
-            <div className="mb-2 flex items-center gap-4 text-sm text-muted-foreground">
-              <time>{post.date}</time>
-              <div className="flex gap-2">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
-                  >
-                    {tag}
-                  </span>
-                ))}
+            <Link
+              href={`https://velog.io/@iamtaekjun/${post.url_slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col sm:flex-row"
+            >
+              {/* Thumbnail */}
+              {post.thumbnail && (
+                <div className="relative h-48 w-full shrink-0 sm:h-auto sm:w-52">
+                  <Image
+                    src={post.thumbnail}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 208px"
+                  />
+                </div>
+              )}
+
+              {/* Content */}
+              <div className="flex flex-1 flex-col justify-center p-6">
+                <div className="mb-2 flex items-center gap-4 text-sm text-muted-foreground">
+                  <time>{formatDate(post.released_at)}</time>
+                  {post.tags.length > 0 && (
+                    <div className="flex gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <h2 className="mb-2 text-2xl font-semibold group-hover:text-primary">
+                  {post.title}
+                </h2>
+                <p className="text-muted-foreground">
+                  {post.short_description}
+                </p>
               </div>
-            </div>
-            <Link href={`/blog/${post.id}`} className="block">
-              <h2 className="mb-2 text-2xl font-semibold group-hover:text-primary">
-                {post.title}
-              </h2>
-              <p className="text-muted-foreground">{post.description}</p>
             </Link>
           </article>
         ))}

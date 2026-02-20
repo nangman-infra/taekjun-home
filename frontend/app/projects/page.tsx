@@ -3,17 +3,17 @@ import Link from "next/link";
 const PROJECTS = [
   {
     id: 1,
-    title: "프로젝트 1",
-    description: "프로젝트 설명이 들어갈 자리입니다.",
-    tags: ["AWS", "Docker", "Python"],
-    github: "https://github.com/iamtaekjun",
+    title: "NCP-UNIV",
+    description: "ncp professional 과정에서 서비스 아키텍처 설계 및 구현 프로젝트를 진행했습니다.",
+    tags: ["NCP", "Kubernetes", "Docker", "Grafana"],
+    github: "https://github.com/iamtaekjun/HA_UNIV.git",
   },
   {
     id: 2,
-    title: "프로젝트 2",
-    description: "프로젝트 설명이 들어갈 자리입니다.",
-    tags: ["Node.js", "NestJS", "PostgreSQL"],
-    github: "https://github.com/iamtaekjun",
+    title: "PublicIs-MOA",
+    description: "대전시에서 진행한 퍼블릭이즈 프로젝트입니다. 치매인식 개선을 위한 웹/앱 서비스 구현을 진행했습니다.",
+    tags: ["Docker", "Next.js", "FastAPI", "PostgreSQL"],
+    github: "https://github.com/PublicIsDJ/moa-app",
   },
   {
     id: 3,
