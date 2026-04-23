@@ -13,7 +13,7 @@ export default function Home() {
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               정택준
             </span>
-            입니다.
+            {" 입니다."}
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl">
             한밭대학교 컴퓨터공학과 학부생
