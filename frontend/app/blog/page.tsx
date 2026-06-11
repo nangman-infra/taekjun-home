@@ -47,7 +47,10 @@ export default async function BlogPage() {
     <div className="container mx-auto max-w-4xl px-4 py-16">
       {/* Header */}
       <div className="mb-12">
-        <h1 className="mb-4 text-4xl font-bold">Blog</h1>
+        <p className="mb-3 font-mono text-sm text-primary">{"// blog"}</p>
+        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+          Blog
+        </h1>
         <p className="text-lg text-muted-foreground">
           개발 경험과 학습 내용을 기록합니다.
         </p>

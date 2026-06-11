@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "정택준 포트폴리오",
-  description: "한밭대학교 컴퓨터공학과 학부생 정택준의 포트폴리오",
+  description:
+    "모니터링, 장애 분석, 운영 자동화를 좋아하는 예비 SRE 정택준의 포트폴리오",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -36,7 +37,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <Navigation />
-        <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+        <main className="min-h-screen pt-24">{children}</main>
         <Footer />
       </body>
     </html>
