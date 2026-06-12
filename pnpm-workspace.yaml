@@ -1,2 +1,7 @@
 packages:
   - 'frontend'
+# CI(Jenkins)에서 pnpm이 빌드 스크립트 미승인 패키지를 에러로 처리하므로 명시적으로 선언.
+# 둘 다 prebuilt 바이너리를 사용하므로 빌드 스크립트 없이 정상 동작한다 (현재 운영 이미지와 동일한 동작).
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
