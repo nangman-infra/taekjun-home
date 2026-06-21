@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { NANGMAN_ACTIVITIES } from "@/lib/activities";
 
 export default function ResumePage() {
   return (
@@ -50,19 +51,26 @@ export default function ResumePage() {
                 온프레미스·AWS 하이브리드 셀프호스팅 인프라 구축 및 운영 팀
               </p>
               <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
-                <li>OPNsense 방화벽 운영 및 Suricata 기반 IDS/IPS 구성</li>
-                <li>
-                  WireGuard·IPsec으로 팀원 서버 30여 대와 AWS VPC를 단일 사설
-                  네트워크로 연결
-                </li>
-                <li>
-                  Netdata → Prometheus → Grafana 모니터링 파이프라인 구축 및
-                  Zabbix 연동
-                </li>
-                <li>Grafana 알림 템플릿 개선 (NoData 상황 분기 처리)</li>
-                <li>
-                  서버 장애 로그 분석 및 트러블슈팅, Ansible 기반 운영 자동화
-                </li>
+                {NANGMAN_ACTIVITIES.map((activity) => (
+                  <li key={activity.summary}>
+                    {activity.summary}
+                    {activity.period && (
+                      <span className="ml-2 text-xs text-muted-foreground/70">
+                        ({activity.period})
+                      </span>
+                    )}
+                    {activity.detail && (
+                      <span className="mt-0.5 block pl-5 text-xs text-muted-foreground/80">
+                        {activity.detail}
+                      </span>
+                    )}
+                    {activity.impact && (
+                      <span className="mt-0.5 block pl-5 text-xs font-medium text-primary">
+                        {activity.impact}
+                      </span>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
