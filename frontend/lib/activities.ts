@@ -43,6 +43,8 @@ export const NANGMAN_ACTIVITIES: Activity[] = [
     title: "모니터링 파이프라인 구축",
     description:
       "Netdata(실시간 수집) → Prometheus(중앙 저장) → Grafana(시각화)로 이어지는 모니터링 계층을 설계·구축했습니다. Zabbix 에이전트 연동과 NoData 상황을 구분하는 Grafana 알림 템플릿도 직접 구현해 잘못된 알림이 오던 문제를 해결했습니다.",
+    impact:
+      "NoData 분기 처리로 잘못 울리던 알림(오탐)을 사실상 제거해 알림 신뢰도 확보",
     stack: ["Netdata", "Prometheus", "Grafana", "Zabbix"],
     featured: true,
   },
