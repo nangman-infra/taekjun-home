@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { FEATURED_ACTIVITIES } from "@/lib/activities";
+
 const SKILL_CATEGORIES = [
   {
     title: "Monitoring & Observability",
@@ -22,29 +25,6 @@ const SKILL_CATEGORIES = [
   {
     title: "Database",
     skills: ["PostgreSQL", "MySQL", "Redis"],
-  },
-] as const;
-
-const NANGMAN_INFRA_HIGHLIGHTS = [
-  {
-    title: "모니터링 파이프라인 구축",
-    description:
-      "Netdata(실시간 수집) → Prometheus(중앙 저장) → Grafana(시각화)로 이어지는 모니터링 계층을 설계·구축했습니다. Zabbix 에이전트 연동과 NoData 상황을 구분하는 Grafana 알림 템플릿도 직접 구현해 잘못된 알림이 오던 문제를 해결했습니다.",
-  },
-  {
-    title: "장애 분석 & 트러블슈팅",
-    description:
-      "서버가 새벽마다 내려가는 장애를 journalctl 로그 기반으로 추적해 원인 후보(백신 스캔, 자동 업데이트 재부팅, 크래시 루프)를 좁혀가며 해결했습니다. 미러 서버 동기화 문제로 인한 Ansible 업데이트 실패도 분석·해결하고, 과정과 한계점을 문서로 남깁니다.",
-  },
-  {
-    title: "방화벽 & 네트워크 보안 운영",
-    description:
-      "OPNsense 방화벽의 인바운드 정책과 NAT를 운영하고, Suricata 기반 IPS를 구성해 악성 트래픽을 실시간으로 차단합니다. abuse.ch, ET Open 등 위협 인텔리전스 룰셋을 적용해 관리합니다.",
-  },
-  {
-    title: "VPN 오버레이 네트워크 구축",
-    description:
-      "팀원들의 개인 서버와 인프라 서버 30여 대, AWS VPC까지 WireGuard와 IPsec(이중화 터널)으로 묶어 하나의 사설 네트워크로 연결했습니다. 거점 간 Site-to-Site 연결도 운영합니다.",
   },
 ] as const;
 
@@ -110,16 +90,27 @@ export default function AboutPage() {
           이 인프라 위에서 돌아갑니다.
         </p>
         <div className="space-y-4">
-          {NANGMAN_INFRA_HIGHLIGHTS.map((item) => (
+          {FEATURED_ACTIVITIES.map((item) => (
             <div
               key={item.title}
               className="rounded-2xl border border-border/60 bg-card/30 p-6"
             >
               <h3 className="mb-2 font-semibold">{item.title}</h3>
               <p className="text-sm text-muted-foreground">{item.description}</p>
+              {item.impact && (
+                <p className="mt-2 text-sm font-medium text-primary">
+                  {item.impact}
+                </p>
+              )}
             </div>
           ))}
         </div>
+        <Link
+          href="/activities"
+          className="mt-6 inline-flex items-center text-sm font-medium text-primary hover:underline"
+        >
+          전체 활동 보기 →
+        </Link>
       </section>
 
       {/* 기술 스택 */}

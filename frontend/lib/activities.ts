@@ -1,55 +1,73 @@
 /**
- * 낭만인프라 활동 태스크 로그 (단일 진실 소스).
+ * 낭만인프라 활동 — 단일 진실 소스.
  *
- * 태스크가 하나 끝날 때마다 이 배열에 객체를 하나 추가하면 된다.
- * 이력서(/resume)의 "활동" 섹션이 이 데이터를 렌더링한다.
+ * 이 배열이 /activities(전체), /about(featured 하이라이트), /resume(요약)
+ * 세 곳을 모두 채운다. 태스크가 하나 끝날 때마다 여기에 객체를 하나 추가하면
+ * 세 페이지에 동시에 반영된다. 배열 순서가 곧 표시 순서다(최신·임팩트 순).
  *
- * summary 만 필수. 나머지는 있는 경우에만 채운다 (없는 값, 특히 수치를
- * 억지로 지어내지 말 것 — 실제 측정값만).
- *
- * SRE 취준 관점에서 가장 중요한 건 impact 다. "무엇을 했다"보다
- * "이만큼 개선했다"(MTTR 단축, 오탐 감소, SLO 달성 등 정량 결과)가
- * 차별점이 된다. detail 은 문제 → 행동 흐름으로 적으면 좋다.
+ * SRE 채용 관점 작성 규칙:
+ * - impact 가 가장 중요하다. "무엇을 했다"가 아니라 "이만큼 개선했다"
+ *   (MTTR 단축, 오탐 감소, 복구 등 정량 결과). 수치는 실제값만, 지어내지 말 것.
+ * - description 은 문제 → 행동 → 결과 흐름으로.
+ * - featured: true 인 항목이 /about 상단 하이라이트로 노출된다(3개 권장).
  */
 export type Activity = {
-  /** 이력서에 한 줄로 표시되는 요약 (불릿 텍스트) */
-  summary: string;
-  /** 진행 시기. 예: "2026-05", "운영 중". 모르면 생략 */
-  period?: string;
-  /** 문제 → 행동 흐름의 상세 설명. 있으면 요약 아래에 작게 표시된다 */
-  detail?: string;
-  /** 정량적 결과·임팩트. 예: "장애 복구 시간 40분 → 8분". 측정값만 적을 것 */
+  /** 카드 제목 */
+  title: string;
+  /** 본문: 문제 → 행동 → 결과 */
+  description: string;
+  /** 정량적 결과·임팩트. 예: "복구 시간 40분 → 8분". 측정값만 */
   impact?: string;
+  /** 진행 시기. 예: "2026-06", "운영 중". 모르면 생략 */
+  period?: string;
   /** 관련 기술 스택 */
   stack?: string[];
   /** 관련 링크 (트러블슈팅 문서, PR 등) */
   link?: string;
+  /** /about 하이라이트로 노출할지 여부 */
+  featured?: boolean;
 };
 
 export const NANGMAN_ACTIVITIES: Activity[] = [
   {
-    summary:
-      "AWX 정기 패치 작업의 Ansible become 타임아웃 인시던트 대응 (Ubuntu 26.04 sudo-rs)",
-    period: "2026-06",
-    detail:
-      "신규 Ubuntu 26.04 서버 2대만 Gathering Facts 단계에서 become 타임아웃. 정상/실패 서버를 비교해 26.04 기본 sudo의 sudo-rs 전환이 Ansible become 프롬프트 미인식을 유발함을 규명하고, update-alternatives로 C 구현 sudo로 전환해 해결.",
+    title: "Ansible become 타임아웃 인시던트 대응 (Ubuntu 26.04 sudo-rs)",
+    description:
+      "AWX 정기 APT 패치 작업에서 신규 Ubuntu 26.04 서버 2대만 Gathering Facts 단계의 권한 에스컬레이션(become) 타임아웃으로 실패했습니다. 정상 서버와 환경을 비교해, 26.04부터 기본 sudo가 Rust 재구현(sudo-rs)으로 바뀌며 Ansible이 지정한 become 프롬프트를 인식하지 못한 것이 원인임을 규명하고, update-alternatives로 기존 C 구현 sudo로 전환해 해결했습니다.",
     impact:
-      "3일간 패치 자동화가 실패하던 신규 서버 2대(16대 중) 복구, 26.04 표준 셋업 절차에 sudo 전환 단계 반영해 재발 방지",
+      "3일간 패치 자동화가 실패하던 신규 서버 2대(16대 중) 복구, 26.04 표준 셋업 절차에 sudo 전환 단계를 반영해 재발 방지",
+    period: "2026-06",
     stack: ["AWX", "Ansible", "Ubuntu 26.04", "sudo-rs"],
-  },
-  { summary: "OPNsense 방화벽 운영 및 Suricata 기반 IDS/IPS 구성" },
-  {
-    summary:
-      "WireGuard·IPsec으로 팀원 서버 30여 대와 AWS VPC를 단일 사설 네트워크로 연결",
+    featured: true,
   },
   {
-    summary:
-      "Netdata → Prometheus → Grafana 모니터링 파이프라인 구축 및 Zabbix 연동",
+    title: "모니터링 파이프라인 구축",
+    description:
+      "Netdata(실시간 수집) → Prometheus(중앙 저장) → Grafana(시각화)로 이어지는 모니터링 계층을 설계·구축했습니다. Zabbix 에이전트 연동과 NoData 상황을 구분하는 Grafana 알림 템플릿도 직접 구현해 잘못된 알림이 오던 문제를 해결했습니다.",
+    stack: ["Netdata", "Prometheus", "Grafana", "Zabbix"],
+    featured: true,
   },
-  { summary: "Grafana 알림 템플릿 개선 (NoData 상황 분기 처리)" },
   {
-    summary: "서버 장애 로그 분석 및 트러블슈팅, Ansible 기반 운영 자동화",
-    detail:
-      "taekjun-ubuntu-server의 주기적 Ansible 업데이트 실패를 미러 서버 동기화 문제로 원인 규명·해결",
+    title: "장애 분석 & 트러블슈팅",
+    description:
+      "서버가 새벽마다 내려가는 장애를 journalctl 로그 기반으로 추적해 원인 후보(백신 스캔, 자동 업데이트 재부팅, 크래시 루프)를 좁혀가며 해결했습니다. 미러 서버 동기화 문제로 인한 Ansible 업데이트 실패도 분석·해결하고, 과정과 한계점을 문서로 남깁니다.",
+    stack: ["journalctl", "Ansible"],
+    featured: true,
+  },
+  {
+    title: "방화벽 & 네트워크 보안 운영",
+    description:
+      "OPNsense 방화벽의 인바운드 정책과 NAT를 운영하고, Suricata 기반 IPS를 구성해 악성 트래픽을 실시간으로 차단합니다. abuse.ch, ET Open 등 위협 인텔리전스 룰셋을 적용해 관리합니다.",
+    stack: ["OPNsense", "Suricata", "NAT"],
+  },
+  {
+    title: "VPN 오버레이 네트워크 구축",
+    description:
+      "팀원들의 개인 서버와 인프라 서버 30여 대, AWS VPC까지 WireGuard와 IPsec(이중화 터널)으로 묶어 하나의 사설 네트워크로 연결했습니다. 거점 간 Site-to-Site 연결도 운영합니다.",
+    stack: ["WireGuard", "IPsec", "AWS VPC"],
   },
 ];
+
+/** /about 상단에 노출할 하이라이트 (featured 표시된 항목) */
+export const FEATURED_ACTIVITIES = NANGMAN_ACTIVITIES.filter(
+  (activity) => activity.featured,
+);

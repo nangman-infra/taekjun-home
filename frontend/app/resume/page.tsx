@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { NANGMAN_ACTIVITIES } from "@/lib/activities";
 
@@ -52,16 +53,11 @@ export default function ResumePage() {
               </p>
               <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
                 {NANGMAN_ACTIVITIES.map((activity) => (
-                  <li key={activity.summary}>
-                    {activity.summary}
+                  <li key={activity.title}>
+                    {activity.title}
                     {activity.period && (
                       <span className="ml-2 text-xs text-muted-foreground/70">
                         ({activity.period})
-                      </span>
-                    )}
-                    {activity.detail && (
-                      <span className="mt-0.5 block pl-5 text-xs text-muted-foreground/80">
-                        {activity.detail}
                       </span>
                     )}
                     {activity.impact && (
@@ -72,6 +68,12 @@ export default function ResumePage() {
                   </li>
                 ))}
               </ul>
+              <Link
+                href="/activities"
+                className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline"
+              >
+                전체 활동 보기 →
+              </Link>
             </div>
           </div>
         </section>
