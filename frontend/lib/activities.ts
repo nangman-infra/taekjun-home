@@ -56,16 +56,10 @@ export const NANGMAN_ACTIVITIES: Activity[] = [
     featured: true,
   },
   {
-    title: "방화벽 & 네트워크 보안 운영",
+    title: "WireGuard 사설 오버레이 네트워크 구성",
     description:
-      "OPNsense 방화벽의 인바운드 정책과 NAT를 운영하고, Suricata 기반 IPS를 구성해 악성 트래픽을 실시간으로 차단합니다. abuse.ch, ET Open 등 위협 인텔리전스 룰셋을 적용해 관리합니다.",
-    stack: ["OPNsense", "Suricata", "NAT"],
-  },
-  {
-    title: "VPN 오버레이 네트워크 구축",
-    description:
-      "팀원들의 개인 서버와 인프라 서버 30여 대, AWS VPC까지 WireGuard와 IPsec(이중화 터널)으로 묶어 하나의 사설 네트워크로 연결했습니다. 거점 간 Site-to-Site 연결도 운영합니다.",
-    stack: ["WireGuard", "IPsec", "AWS VPC"],
+      "OPNsense에 WireGuard 피어를 등록해 팀원들의 서버를 하나의 사설 오버레이 네트워크로 연결했습니다.",
+    stack: ["WireGuard", "OPNsense"],
   },
 ];
 

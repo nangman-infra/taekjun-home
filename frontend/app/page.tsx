@@ -130,8 +130,8 @@ export default function Home() {
             <Shield className="mb-4 size-8 text-primary" />
             <h3 className="mb-2 text-lg font-semibold">Network &amp; Security</h3>
             <p className="text-sm text-muted-foreground">
-              방화벽·VPN·IDS/IPS를 운영하며 팀의 사설 네트워크를 안전하게
-              유지합니다.
+              WireGuard와 OPNsense로 팀 서버들을 사설 오버레이 네트워크에 묶어
+              안전하게 연결합니다.
             </p>
           </div>
 
