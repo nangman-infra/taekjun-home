@@ -53,7 +53,7 @@ const LEARNING = [
   "ArgoCD",
 ] as const;
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
       {children}
