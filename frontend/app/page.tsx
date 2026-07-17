@@ -13,9 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/contact-form";
 
 const TECH_STACK = [
-  "Prometheus",
-  "Grafana",
   "Zabbix",
+  "Grafana",
   "OPNsense",
   "WireGuard",
   "Docker",
@@ -112,8 +111,8 @@ export default function Home() {
               Monitoring &amp; Observability
             </h3>
             <p className="text-sm text-muted-foreground">
-              Netdata → Prometheus → Grafana로 이어지는 메트릭 파이프라인과
-              알림 체계를 설계하고 운영합니다.
+              Zabbix(수집·저장)와 Grafana(시각화·알림) 기반의 메트릭 수집과
+              알림 체계를 구축하고 운영합니다.
             </p>
           </div>
 

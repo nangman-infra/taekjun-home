@@ -9,7 +9,9 @@ describe("Resume page", () => {
 
     expect(screen.getByText("한밭대학교")).toBeInTheDocument();
     expect(screen.getByText("낭만인프라")).toBeInTheDocument();
-    expect(screen.getByText("모니터링 파이프라인 구축")).toBeInTheDocument();
+    expect(
+      screen.getByText("모니터링 구축·운영 (Zabbix + Grafana)"),
+    ).toBeInTheDocument();
   });
 
   it("연락처에 이메일과 GitHub 링크를 렌더링한다", () => {

@@ -85,7 +85,7 @@ export default function ResumePage() {
             <div>
               <h3 className="mb-3 font-semibold">Network & Monitoring</h3>
               <div className="flex flex-wrap gap-2">
-                {["OPNsense", "WireGuard", "Prometheus", "Grafana", "Zabbix"].map(
+                {["OPNsense", "WireGuard", "Zabbix", "Grafana"].map(
                   (skill) => (
                     <span
                       key={skill}

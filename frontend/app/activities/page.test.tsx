@@ -15,7 +15,9 @@ describe("Activities page", () => {
         "Ansible become 타임아웃 인시던트 대응 (Ubuntu 26.04 sudo-rs)",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByText("모니터링 파이프라인 구축")).toBeInTheDocument();
+    expect(
+      screen.getByText("모니터링 구축·운영 (Zabbix + Grafana)"),
+    ).toBeInTheDocument();
   });
 
   it("임팩트와 기술 스택을 렌더링한다", () => {

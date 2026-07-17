@@ -23,7 +23,7 @@ const FOCUS_AREAS = [
 const SKILL_CATEGORIES = [
   {
     title: "Monitoring",
-    skills: ["Prometheus", "Grafana", "Netdata", "Zabbix"],
+    skills: ["Zabbix", "Grafana"],
   },
   {
     title: "Network & Security",

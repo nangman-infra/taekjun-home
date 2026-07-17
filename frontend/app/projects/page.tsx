@@ -22,7 +22,7 @@ const PROJECTS = [
     title: "낭만인프라 (Nangman Infra)",
     description:
       "팀원들과 온프레미스 서버와 AWS를 하이브리드로 연결해 운영하는 셀프호스팅 인프라 팀입니다. 방화벽·VPN·모니터링·CI/CD를 직접 구축하고, 장애 분석과 운영 자동화까지 담당하고 있습니다.",
-    tags: ["OPNsense", "WireGuard", "Prometheus", "Grafana", "Ansible"],
+    tags: ["OPNsense", "WireGuard", "Zabbix", "Grafana", "Ansible"],
     link: "https://nangman.cloud",
     linkLabel: "Website",
   },
