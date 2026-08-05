@@ -30,6 +30,17 @@ export type Activity = {
 
 export const NANGMAN_ACTIVITIES: Activity[] = [
   {
+    title: "PSI 기반 메모리 관측 파이프라인 구축 (Zabbix + Ansible + Grafana)",
+    description:
+      "메모리 사용률 기반 알림은 대부분 page cache로 인한 오탐이라, 실제 태스크 정지 시간을 나타내는 PSI(Pressure Stall Information)로 관측 기준을 전환했습니다. Zabbix agent 2의 UserParameter로 /proc/pressure/memory를 수집하고, Ansible/AWX로 아키텍처·OS가 섞인 이기종 fleet에 단계적으로 배포한 뒤, Zabbix Template로 표준화하고 Grafana 대시보드·알림까지 연결했습니다. arm64 저장소, 에이전트 미설치, 알림 값 미노출 등 이기종 환경 특유의 함정을 가드와 표현식 재구성으로 해결했습니다.",
+    impact:
+      "메모리 사용률 오탐을 압박(PSI) 기준 알림으로 대체, 이기종 fleet 20여 대(x86/arm64·Ubuntu/Debian)에 stat 가드·멱등 방식으로 자동 배포(PSI 미지원 호스트 자동 제외)",
+    period: "2026-08",
+    stack: ["Zabbix", "Ansible", "AWX", "Grafana", "PSI", "Linux"],
+    link: "https://velog.io/@iamtaekjun/PSI-지표-대시보드-구축기",
+    featured: true,
+  },
+  {
     title: "Ansible become 타임아웃 인시던트 대응 (Ubuntu 26.04 sudo-rs)",
     description:
       "AWX 정기 APT 패치 작업에서 신규 Ubuntu 26.04 서버 2대만 Gathering Facts 단계의 권한 에스컬레이션(become) 타임아웃으로 실패했습니다. 정상 서버와 환경을 비교해, 26.04부터 기본 sudo가 Rust 재구현(sudo-rs)으로 바뀌며 Ansible이 지정한 become 프롬프트를 인식하지 못한 것이 원인임을 규명하고, update-alternatives로 기존 C 구현 sudo로 전환해 해결했습니다.",
@@ -46,6 +57,7 @@ export const NANGMAN_ACTIVITIES: Activity[] = [
     impact:
       "NoData 분기 처리로 잘못 울리던 알림(오탐)을 사실상 제거해 알림 신뢰도 확보",
     stack: ["Zabbix", "Grafana"],
+    link: "https://velog.io/@iamtaekjun/Zabbix-모니터링-알람-체계-개선기",
     featured: true,
   },
   {
