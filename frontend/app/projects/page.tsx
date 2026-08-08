@@ -30,7 +30,7 @@ const PROJECTS = [
     id: 4,
     title: "클라우드스퀘어 현장실습 (NCP 인프라)",
     description:
-      "클라우드스퀘어 현장실습에서 Naver Cloud Platform(NCP) 기반 클라우드 인프라를 설계·구축했습니다. 3-Tier 아키텍처로 서비스를 구현하고(LB 이중화·KMS 암호화·SSL VPN·모니터링), 나라장터 공공 RFP를 분석해 요구사항에 맞는 LMS 인프라(WEB/WAS/DB/캐시·백업·복구)까지 구축했습니다.",
+      "클라우드스퀘어 현장실습에서 Naver Cloud Platform(NCP) 기반 클라우드 인프라를 설계·구축했습니다. 3-Tier 아키텍처로 서비스를 구현하고, 나라장터 공공 RFP를 분석해 요구사항에 맞는 LMS 인프라까지 구축했습니다.",
     tags: ["NCP", "3-Tier", "Linux", "MySQL", "Prometheus", "Grafana"],
     link: "https://velog.io/@iamtaekjun/클라우드스퀘어-현장실습-2차-과제",
     linkLabel: "velog",
