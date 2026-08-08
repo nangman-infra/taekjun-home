@@ -37,7 +37,7 @@ const PROJECTS = [
   },
   {
     id: 5,
-    title: "Budgetly (오픈소스 활용SW 경진대회 🏆 1등)",
+    title: "Budgetly",
     description:
       "Azure Document Intelligence OCR로 영수증을 자동 인식해 조직 예산을 관리하는 PWA입니다. 백엔드 개발을 맡아 FastAPI 기반 REST API, OCR·PDF 리포트 연동, Firebase 데이터 연동을 구현했습니다. 국립한밭대학교 오픈소스 활용SW 경진대회 1등 수상작입니다.",
     tags: ["FastAPI", "Vue.js", "Firebase", "Azure OCR", "PWA", "AWS EC2"],
