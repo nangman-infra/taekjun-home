@@ -19,9 +19,13 @@ describe("About page", () => {
 
     expect(screen.getByText("낭만인프라 활동")).toBeInTheDocument();
     expect(
-      screen.getByText("모니터링 구축·운영 (Zabbix + Grafana)"),
+      screen.getByText("KREONET 세미나 발표 — 셀프호스팅 인프라 모니터링 구축 사례"),
     ).toBeInTheDocument();
-    expect(screen.getByText("장애 분석 & 트러블슈팅")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "PSI 기반 메모리 관측 파이프라인 구축 (Zabbix + Ansible + Grafana)",
+      ),
+    ).toBeInTheDocument();
   });
 
   it("기술 스택과 학습 중 항목을 렌더링한다", () => {
