@@ -44,6 +44,15 @@ const PROJECTS = [
     link: "https://github.com/iamtaekjun/ossw-competition25-yee",
     linkLabel: "GitHub",
   },
+  {
+    id: 6,
+    title: "SmartCoolParasol (SP!ED2025)",
+    description:
+      "한·중·일 학생이 모인 국제 캡스톤디자인 프로젝트입니다. 재생에너지 기반 스마트 파라솔로, 폭염 시 그늘과 물 분사로 주변 기온을 낮추고 강우 감지 시 각도를 높여 빗물을 수집합니다. 2인 소프트웨어 팀에서 Arduino/C++ 임베디드 제어(강우 감지 로직, 모드별 서보 제어, 센서 통합)를 담당했습니다. Gold Award(2등) 수상작입니다.",
+    tags: ["Arduino", "C++", "IoT", "임베디드", "국제 캡스톤"],
+    link: "https://github.com/iamtaekjun/SPEID2025_SmartCoolParasol",
+    linkLabel: "GitHub",
+  },
 ];
 
 export default function ProjectsPage() {
