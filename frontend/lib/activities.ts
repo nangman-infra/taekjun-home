@@ -68,14 +68,12 @@ export const NANGMAN_ACTIVITIES: Activity[] = [
       "NoData 분기 처리로 잘못 울리던 알림(오탐)을 사실상 제거해 알림 신뢰도 확보",
     stack: ["Zabbix", "Grafana"],
     link: "https://velog.io/@iamtaekjun/Zabbix-모니터링-알람-체계-개선기",
-    featured: true,
   },
   {
     title: "장애 분석 & 트러블슈팅",
     description:
       "서버가 새벽마다 내려가는 장애를 journalctl 로그 기반으로 추적해 원인 후보(백신 스캔, 자동 업데이트 재부팅, 크래시 루프)를 좁혀가며 해결했습니다. 미러 서버 동기화 문제로 인한 Ansible 업데이트 실패도 분석·해결하고, 과정과 한계점을 문서로 남깁니다.",
     stack: ["journalctl", "Ansible"],
-    featured: true,
   },
   {
     title: "WireGuard 사설 오버레이 네트워크 구성",
