@@ -41,6 +41,16 @@ export const NANGMAN_ACTIVITIES: Activity[] = [
     featured: true,
   },
   {
+    title: "KREONET 세미나 발표 — 셀프호스팅 인프라 모니터링 구축 사례",
+    description:
+      "KREONET(국가과학기술연구망) 실무자협의회 오픈소스 워킹그룹 세미나에서 낭만인프라의 Zabbix+Grafana 모니터링 구축·운영 사례를 발표했습니다. 사람이 장애를 감지하던 인프라를 관측 가능하게 만든 과정, NoData 오탐을 걷어내 알림 신뢰도를 확보한 방법, 실제 새벽 장애를 추적한 사례와 컨테이너 관측의 사각지대·다음 과제(SLO/SLI)까지 공유했습니다.",
+    impact:
+      "국가과학기술연구망(KREONET) 오픈소스 커뮤니티 대상 외부 기술 발표",
+    period: "2026-07",
+    stack: ["Zabbix", "Grafana"],
+    featured: true,
+  },
+  {
     title: "Ansible become 타임아웃 인시던트 대응 (Ubuntu 26.04 sudo-rs)",
     description:
       "AWX 정기 APT 패치 작업에서 신규 Ubuntu 26.04 서버 2대만 Gathering Facts 단계의 권한 에스컬레이션(become) 타임아웃으로 실패했습니다. 정상 서버와 환경을 비교해, 26.04부터 기본 sudo가 Rust 재구현(sudo-rs)으로 바뀌며 Ansible이 지정한 become 프롬프트를 인식하지 못한 것이 원인임을 규명하고, update-alternatives로 기존 C 구현 sudo로 전환해 해결했습니다.",
