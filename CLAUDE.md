@@ -23,9 +23,12 @@ pnpm dev            # 개발 서버 (http://localhost:3000)
 pnpm build          # 프로덕션 빌드
 pnpm start          # 프로덕션 서버 실행
 pnpm lint           # ESLint (v9 flat config, eslint-config-next)
+pnpm test           # Vitest 전체 실행 (vitest run --coverage)
 ```
 
-테스트 프레임워크는 없다.
+테스트: **Vitest + @testing-library/react (jsdom)**. `frontend/`의 각 페이지·컴포넌트 옆에 `*.test.tsx`가 있고, Jenkins CI에서도 실행된다. 로컬 실행은 `pnpm test` 또는 `pnpm exec vitest run`(pnpm이 PATH에 없으면 `./node_modules/.bin/vitest run`).
+
+주의: `lib/activities.ts`의 `featured` 항목을 바꾸면 `app/about/page.test.tsx`가 about 하이라이트 제목을 문자열로 검증하므로 함께 갱신해야 한다.
 
 ## 기술 스택
 
