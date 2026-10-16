@@ -4,7 +4,7 @@ import { FEATURED_ACTIVITIES } from "@/lib/activities";
 const FOCUS_AREAS = [
   {
     title: "Monitoring & Observability",
-    description: "메트릭 수집·시각화와 오탐 없는 알림 체계 설계",
+    description: "메트릭 수집·시각화와 수집 장애·실제 장애를 구분하는 알림 체계 설계",
   },
   {
     title: "Incident Response",
@@ -39,11 +39,11 @@ const SKILL_CATEGORIES = [
   },
   {
     title: "Languages",
-    skills: ["Python", "JavaScript/TypeScript", "Java"],
+    skills: ["Python", "JavaScript/TypeScript", "Java (Spring 학습)"],
   },
   {
     title: "Database",
-    skills: ["PostgreSQL", "MySQL", "Redis"],
+    skills: ["PostgreSQL", "MySQL (NCP Cloud DB)", "Redis (NCP Cloud DB)"],
   },
 ] as const;
 
