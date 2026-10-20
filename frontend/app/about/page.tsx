@@ -66,11 +66,11 @@ export default function AboutPage() {
     <div className="container mx-auto max-w-3xl px-4 py-16">
       {/* Header */}
       <header className="mb-14">
-        <p className="mb-3 font-mono text-sm text-primary">{"// about"}</p>
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+        <p className="mb-3 font-mono text-xs text-muted-foreground">{"// about"}</p>
+        <h1 className="mb-4 text-3xl font-semibold tracking-tight">
           About Me
         </h1>
-        <p className="text-lg leading-relaxed text-muted-foreground">
+        <p className="leading-relaxed text-muted-foreground">
           한밭대학교 컴퓨터공학과 학부생이고, SRE(Site Reliability Engineer)를
           지향합니다. 서비스를 안정적으로 관측하고, 장애 원인을 추적하고, 운영을
           자동화하는 일을 합니다.

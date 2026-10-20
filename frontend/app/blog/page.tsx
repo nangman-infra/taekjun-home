@@ -44,14 +44,14 @@ export default async function BlogPage() {
   const posts = await fetchVelogPosts();
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-16">
+    <div className="container mx-auto max-w-3xl px-4 py-16">
       {/* Header */}
       <div className="mb-12">
-        <p className="mb-3 font-mono text-sm text-primary">{"// blog"}</p>
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+        <p className="mb-3 font-mono text-xs text-muted-foreground">{"// blog"}</p>
+        <h1 className="mb-4 text-3xl font-semibold tracking-tight">
           Blog
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground">
           개발 경험과 학습 내용을 기록합니다.
         </p>
       </div>

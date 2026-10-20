@@ -48,7 +48,7 @@ const PROJECTS = [
     id: 6,
     title: "SmartCoolParasol (SP!ED2025)",
     description:
-      "한·중·일 학생이 모인 국제 캡스톤디자인 프로젝트입니다. 재생에너지 기반 스마트 파라솔로, 폭염 시 그늘과 물 분사로 주변 기온을 낮추고 강우 감지 시 각도를 높여 빗물을 수집합니다. 2인 소프트웨어 팀에서 Arduino/C++ 임베디드 제어(강우 감지 로직, 모드별 서보 제어, 센서 통합)를 담당했습니다. Gold Award(2등) 수상작입니다.",
+      "한·중·일 학생이 모인 국제 캡스톤디자인 프로젝트입니다. 재생에너지 기반 스마트 파라솔로, 폭염 시 그늘과 물 분사로 주변 기온을 낮추고 강우 감지 시 각도를 높여 빗물을 수집합니다. 2인 소프트웨어 팀에서 Arduino/C++ 임베디드 제어(강우 감지 로직, 모드별 서보 제어, 센서 통합)를 담당했습니다. Gold Award 수상작입니다.",
     tags: ["Arduino", "C++", "IoT", "임베디드", "국제 캡스톤"],
     link: "https://github.com/iamtaekjun/SPEID2025_SmartCoolParasol",
     linkLabel: "GitHub",
@@ -57,36 +57,36 @@ const PROJECTS = [
 
 export default function ProjectsPage() {
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-16">
+    <div className="container mx-auto max-w-3xl px-4 py-16">
       {/* Header */}
       <div className="mb-12">
-        <p className="mb-3 font-mono text-sm text-primary">{"// projects"}</p>
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+        <p className="mb-3 font-mono text-xs text-muted-foreground">{"// projects"}</p>
+        <h1 className="mb-4 text-3xl font-semibold tracking-tight">
           Projects
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground">
           진행한 프로젝트들을 소개합니다.
         </p>
       </div>
 
       {/* Project Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="divide-y divide-border/60 border-t border-border/60">
         {PROJECTS.map((project) => (
           <div
             key={project.id}
-            className="group rounded-lg border bg-card p-6 transition-all hover:shadow-lg"
+            className="py-8"
           >
-            <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
+            <h3 className="mb-2 font-semibold">{project.title}</h3>
             <p className="mb-4 text-sm text-muted-foreground">
               {project.description}
             </p>
 
             {/* Tags */}
-            <div className="mb-4 flex flex-wrap gap-2">
+            <div className="mb-4 flex flex-wrap gap-x-3 gap-y-1">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+                  className="font-mono text-xs text-muted-foreground"
                 >
                   {tag}
                 </span>
@@ -99,7 +99,7 @@ export default function ProjectsPage() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+                className="inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {project.linkLabel} →
               </Link>

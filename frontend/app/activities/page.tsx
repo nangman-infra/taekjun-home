@@ -2,14 +2,14 @@ import { NANGMAN_ACTIVITIES } from "@/lib/activities";
 
 export default function ActivitiesPage() {
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-16">
+    <div className="container mx-auto max-w-3xl px-4 py-16">
       {/* Header */}
       <div className="mb-12">
-        <p className="mb-3 font-mono text-sm text-primary">{"// activities"}</p>
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+        <p className="mb-3 font-mono text-xs text-muted-foreground">{"// activities"}</p>
+        <h1 className="mb-4 text-3xl font-semibold tracking-tight">
           Activities
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground">
           낭만인프라에서 직접 수행한 인프라·신뢰성 활동을 최신순으로 정리했습니다.
           각 활동은 문제 → 해결 → 결과(임팩트) 순으로 기록합니다.
         </p>

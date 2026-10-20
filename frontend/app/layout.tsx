@@ -37,7 +37,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <Navigation />
-        <main className="min-h-screen pt-24">{children}</main>
+        <main className="min-h-screen pt-14 print:min-h-0 print:pt-0">{children}</main>
         <Footer />
       </body>
     </html>

@@ -53,7 +53,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 rounded-3xl border border-border/60 bg-card/30 p-6 backdrop-blur-sm sm:p-8"
+      className="space-y-4"
     >
       {/* 스팸 봇 차단용 honeypot — 사람에게는 보이지 않는 필드 */}
       <input
@@ -115,7 +115,7 @@ export function ContactForm() {
         type="submit"
         size="lg"
         disabled={status === "sending"}
-        className="w-full rounded-full"
+        className="w-full"
       >
         {status === "sending" ? (
           <>

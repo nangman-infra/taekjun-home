@@ -1,192 +1,126 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Activity,
-  Github,
-  Mail,
-  Shield,
-  Siren,
-  Terminal,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowUpRight, Github, Mail } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 
-const TECH_STACK = [
-  "Zabbix",
-  "Grafana",
-  "OPNsense",
-  "WireGuard",
-  "Docker",
-  "Ansible",
-  "AWS",
-  "NCP",
+const FOCUS_AREAS = [
+  {
+    title: "Monitoring",
+    description: "Zabbix로 수집하고 Grafana로 시각화·알림합니다.",
+  },
+  {
+    title: "Incident Response",
+    description: "로그로 원인을 추적하고 포스트모템으로 남깁니다.",
+  },
+  {
+    title: "Automation",
+    description: "Ansible/AWX로 서버 운영을 자동화합니다.",
+  },
+  {
+    title: "Network",
+    description: "WireGuard 피어로 서버를 사설 오버레이에 연결합니다.",
+  },
 ] as const;
+
+const NANGMAN_METRICS = "32 hosts · ~3,000 metrics · 85 alert rules";
 
 export default function Home() {
   return (
-    <div className="container mx-auto max-w-6xl px-4">
+    <div className="container mx-auto max-w-3xl px-4">
       {/* Hero Section */}
-      <section className="relative flex min-h-[80vh] flex-col items-center justify-center text-center">
-        {/* 배경 글로우 */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      <section className="flex min-h-[60vh] flex-col justify-center py-16">
+        <p className="animate-fade-up mb-6 font-mono text-xs text-muted-foreground">
+          site reliability engineer, in progress
+        </p>
+
+        <h1
+          className="animate-fade-up mb-6 text-4xl font-semibold tracking-tight sm:text-5xl"
+          style={{ animationDelay: "100ms" }}
         >
-          <div className="absolute left-1/4 top-1/4 size-72 rounded-full bg-emerald-500/15 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 size-72 rounded-full bg-sky-500/10 blur-3xl" />
-        </div>
+          정택준
+        </h1>
 
-        <div className="space-y-8">
-          <div className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/50 px-4 py-1.5 font-mono text-xs text-muted-foreground backdrop-blur-sm">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60" />
-              <span className="relative inline-flex size-2 rounded-full bg-primary" />
-            </span>
-            <span className="sm:hidden">OPEN TO WORK · SRE</span>
-            <span className="hidden sm:inline">
-              OPEN TO WORK · SITE RELIABILITY ENGINEERING
-            </span>
-          </div>
+        <p
+          className="animate-fade-up mb-10 max-w-xl text-muted-foreground"
+          style={{ animationDelay: "200ms" }}
+        >
+          관측하고, 원인을 끝까지 추적하고, 운영을 자동화합니다.
+        </p>
 
-          <h1
-            className="animate-fade-up text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
-            style={{ animationDelay: "100ms" }}
-          >
-            인프라에 낭만을
-            <br />
-            더하는 개발자, <span className="text-gradient">정택준</span>
-          </h1>
-
-          <p
-            className="animate-fade-up mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl"
-            style={{ animationDelay: "200ms" }}
-          >
-            한밭대학교 컴퓨터공학과 학부생이고, SRE를 지향합니다.
-            <br className="hidden sm:block" />
-            서비스를 관측하고, 장애의 원인을 끝까지 추적하고, 운영을
-            자동화하는 일을 좋아합니다.
-          </p>
-
-          <div
-            className="animate-fade-up flex flex-col items-center justify-center gap-4 sm:flex-row"
-            style={{ animationDelay: "300ms" }}
-          >
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/projects">
-                프로젝트 보기
-                <ArrowRight />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link href="/#contact">
-                <Mail />
-                이메일 보내기
-              </Link>
-            </Button>
-          </div>
-
-          <div
-            className="animate-fade-up flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground/70"
-            style={{ animationDelay: "400ms" }}
-          >
-            {TECH_STACK.map((tech) => (
-              <span key={tech}>{tech}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Bento Grid */}
-      <section className="py-16">
-        <p className="mb-3 font-mono text-sm text-primary">{"// what i do"}</p>
-        <h2 className="mb-10 text-3xl font-bold tracking-tight sm:text-4xl">
-          이런 걸 합니다
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-3xl border border-border/60 bg-card/30 p-7 backdrop-blur-sm transition-colors hover:border-primary/40">
-            <Activity className="mb-4 size-8 text-primary" />
-            <h3 className="mb-2 text-lg font-semibold">
-              Monitoring &amp; Observability
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Zabbix(수집·저장)와 Grafana(시각화·알림) 기반의 메트릭 수집과
-              알림 체계를 구축하고 운영합니다.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-border/60 bg-card/30 p-7 backdrop-blur-sm transition-colors hover:border-primary/40">
-            <Siren className="mb-4 size-8 text-primary" />
-            <h3 className="mb-2 text-lg font-semibold">Incident Response</h3>
-            <p className="text-sm text-muted-foreground">
-              장애가 나면 로그로 원인을 끝까지 추적하고, 같은 장애가 반복되지
-              않도록 기록을 남깁니다.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-border/60 bg-card/30 p-7 backdrop-blur-sm transition-colors hover:border-primary/40">
-            <Shield className="mb-4 size-8 text-primary" />
-            <h3 className="mb-2 text-lg font-semibold">Network &amp; Security</h3>
-            <p className="text-sm text-muted-foreground">
-              WireGuard와 OPNsense로 팀 서버들을 사설 오버레이 네트워크에 묶어
-              안전하게 연결합니다.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-border/60 bg-card/30 p-7 backdrop-blur-sm transition-colors hover:border-primary/40 md:col-span-2">
-            <Terminal className="mb-4 size-8 text-primary" />
-            <h3 className="mb-2 text-lg font-semibold">
-              이 홈페이지도 셀프호스팅 인프라에서 돌아갑니다
-            </h3>
-            <p className="mb-4 text-sm text-muted-foreground">
-              지금 보고 계신 이 사이트는 낭만인프라 팀이 함께 구축한 셀프호스팅
-              인프라 위에서 돌아갑니다. main 브랜치에 push하면 빌드부터
-              배포까지 자동으로 이어집니다.
-            </p>
-            <p className="font-mono text-xs text-muted-foreground/70">
-              git push → Jenkins → Harbor → Watchtower → 배포 완료
-            </p>
-          </div>
-
+        <div
+          className="animate-fade-up flex flex-wrap items-center gap-6 text-sm"
+          style={{ animationDelay: "300ms" }}
+        >
           <Link
-            href="https://github.com/iamtaekjun"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex flex-col justify-between rounded-3xl border border-border/60 bg-card/30 p-7 backdrop-blur-sm transition-colors hover:border-primary/40"
+            href="/projects"
+            className="inline-flex items-center gap-1.5 font-medium underline-offset-4 hover:underline"
           >
-            <Github className="size-8 text-primary" />
-            <div>
-              <div className="mb-1 flex items-center gap-1 text-lg font-semibold">
-                GitHub
-                <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </div>
-              <p className="text-sm text-muted-foreground">@iamtaekjun</p>
-            </div>
+            프로젝트 보기
+            <ArrowRight className="size-4" />
+          </Link>
+          <Link
+            href="/#contact"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            이메일 보내기
           </Link>
         </div>
       </section>
 
+      {/* What I Do */}
+      <section className="border-t border-border/60 py-16">
+        <p className="mb-8 font-mono text-xs text-muted-foreground">
+          {"// what i do"}
+        </p>
+
+        <dl className="divide-y divide-border/60">
+          {FOCUS_AREAS.map((area) => (
+            <div
+              key={area.title}
+              className="grid gap-1 py-4 sm:grid-cols-[180px_1fr] sm:gap-4"
+            >
+              <dt className="text-sm font-medium">{area.title}</dt>
+              <dd className="text-sm text-muted-foreground">
+                {area.description}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-10 space-y-2 font-mono text-xs text-muted-foreground">
+          <p>nangman infra — {NANGMAN_METRICS}</p>
+          <p>this site runs on self-hosted infra · git push → jenkins → harbor → watchtower</p>
+        </div>
+
+        <Link
+          href="https://github.com/iamtaekjun"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-6 inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <span>@iamtaekjun</span>
+          <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </Link>
+      </section>
+
       {/* Contact Section */}
-      <section id="contact" className="scroll-mt-24 py-16 pb-24">
-        <div className="grid gap-12 lg:grid-cols-2">
+      <section id="contact" className="scroll-mt-24 border-t border-border/60 py-16 pb-24">
+        <div className="grid gap-12">
           <div>
-            <p className="mb-3 font-mono text-sm text-primary">{"// contact"}</p>
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              같이 일해보고 싶다면,
-              <br />
+            <p className="mb-8 font-mono text-xs text-muted-foreground">
+              {"// contact"}
+            </p>
+            <h2 className="mb-4 text-2xl font-semibold tracking-tight">
               편하게 연락주세요.
             </h2>
-            <p className="mb-8 text-muted-foreground">
-              프로젝트 제안, 채용, 스터디, 커피챗 모두 환영합니다. 폼을 작성해
-              보내시면 제 메일함으로 바로 도착합니다.
+            <p className="mb-8 text-sm text-muted-foreground">
+              채용, 스터디, 커피챗 모두 환영합니다.
             </p>
             <div className="space-y-3">
               <a
                 href="mailto:taekjunnnn@nangman.cloud"
                 className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                <Mail className="size-4 text-primary" />
+                <Mail className="size-4" />
                 taekjunnnn@nangman.cloud
               </a>
               <a
@@ -195,7 +129,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                <Github className="size-4 text-primary" />
+                <Github className="size-4" />
                 github.com/iamtaekjun
               </a>
             </div>

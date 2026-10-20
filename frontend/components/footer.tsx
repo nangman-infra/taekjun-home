@@ -4,8 +4,8 @@ export function Footer() {
   const CURRENT_YEAR = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border/60">
-      <div className="container mx-auto max-w-6xl px-4 py-10">
+    <footer className="border-t border-border/60 print:hidden">
+      <div className="container mx-auto max-w-3xl px-4 py-10">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           {/* Copyright */}
           <div className="text-center md:text-left">
