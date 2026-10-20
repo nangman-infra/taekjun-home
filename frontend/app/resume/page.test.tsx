@@ -18,10 +18,19 @@ describe("Resume page", () => {
     render(<ResumePage />);
 
     expect(
-      screen.getByRole("link", { name: "taekjunnnn@nangman.cloud" }),
-    ).toHaveAttribute("href", "mailto:taekjunnnn@nangman.cloud");
+      screen.getByRole("link", { name: "taekjunnnn@gmail.com" }),
+    ).toHaveAttribute("href", "mailto:taekjunnnn@gmail.com");
     expect(
       screen.getByRole("link", { name: "github.com/iamtaekjun" }),
+    ).toBeInTheDocument();
+  });
+
+  it("자격증과 수상 경력을 렌더링한다", () => {
+    render(<ResumePage />);
+
+    expect(screen.getByText("정보처리기사")).toBeInTheDocument();
+    expect(
+      screen.getByText("SP!ED2025 Gold Award (iRE-Asia)"),
     ).toBeInTheDocument();
   });
 });

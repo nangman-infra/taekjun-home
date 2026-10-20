@@ -2,6 +2,38 @@ import Link from "next/link";
 import { PrintResumeButton } from "@/components/print-resume-button";
 import { NANGMAN_ACTIVITIES } from "@/lib/activities";
 
+const CERTIFICATIONS = [
+  { name: "정보처리기사", date: "2026.09" },
+  { name: "Naver Cloud Certified Professional (NCP)", date: "2026.01" },
+  { name: "Naver Cloud Certified Associate (NCA)", date: "2025.11" },
+] as const;
+
+const AWARDS = [
+  { name: "CEDC 2025 Bronze Award (iRE-Asia)", date: "2025.12" },
+  { name: "소중한 오픈소스 활용SW 경진대회 1등 (Budgetly)", date: "2025.11" },
+  { name: "SP!ED2025 Gold Award (iRE-Asia)", date: "2025.08" },
+] as const;
+
+function DatedList({
+  items,
+}: Readonly<{ items: readonly { name: string; date: string }[] }>) {
+  return (
+    <ul className="divide-y rounded-lg border">
+      {items.map((item) => (
+        <li
+          key={item.name}
+          className="flex items-baseline justify-between gap-4 px-6 py-3"
+        >
+          <span>{item.name}</span>
+          <span className="shrink-0 font-mono text-sm text-muted-foreground">
+            {item.date}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function ResumePage() {
   return (
     <div className="container mx-auto max-w-3xl px-4 py-16">
@@ -75,6 +107,18 @@ export default function ResumePage() {
           </div>
         </section>
 
+        {/* 자격증 */}
+        <section className="break-inside-avoid">
+          <h2 className="mb-6 text-2xl font-bold">자격증</h2>
+          <DatedList items={CERTIFICATIONS} />
+        </section>
+
+        {/* 수상 */}
+        <section className="break-inside-avoid">
+          <h2 className="mb-6 text-2xl font-bold">수상</h2>
+          <DatedList items={AWARDS} />
+        </section>
+
         {/* 기술 스택 */}
         <section>
           <h2 className="mb-6 text-2xl font-bold">기술 스택</h2>
@@ -112,7 +156,7 @@ export default function ResumePage() {
             <div>
               <h3 className="mb-3 font-semibold">Programming Languages</h3>
               <div className="flex flex-wrap gap-2">
-                {["Python", "Java", "JavaScript/TypeScript"].map((skill) => (
+                {["Python", "Java"].map((skill) => (
                   <span
                     key={skill}
                     className="rounded-full border border-border/60 bg-card/50 px-3 py-1 text-sm font-medium"
@@ -133,10 +177,10 @@ export default function ResumePage() {
               <div>
                 <h3 className="mb-1 font-semibold">Email</h3>
                 <a
-                  href="mailto:taekjunnnn@nangman.cloud"
+                  href="mailto:taekjunnnn@gmail.com"
                   className="text-primary hover:underline"
                 >
-                  taekjunnnn@nangman.cloud
+                  taekjunnnn@gmail.com
                 </a>
               </div>
               <div>

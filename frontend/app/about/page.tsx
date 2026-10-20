@@ -39,7 +39,7 @@ const SKILL_CATEGORIES = [
   },
   {
     title: "Languages",
-    skills: ["Python", "JavaScript/TypeScript", "Java (Spring 학습)"],
+    skills: ["Python", "Java (Spring 학습)"],
   },
   {
     title: "Database",
