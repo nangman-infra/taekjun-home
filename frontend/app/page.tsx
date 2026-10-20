@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Github, Mail } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+import { MetricPulse } from "@/components/metric-pulse";
 
 const FOCUS_AREAS = [
   {
@@ -30,6 +31,10 @@ export default function Home() {
       <section className="flex min-h-[60vh] flex-col justify-center py-16">
         <p className="animate-fade-up mb-6 font-mono text-xs text-muted-foreground">
           site reliability engineer, in progress
+          <span
+            aria-hidden="true"
+            className="animate-blink ml-1 inline-block h-3 w-1.5 translate-y-0.5 bg-muted-foreground"
+          />
         </p>
 
         <h1
@@ -63,6 +68,13 @@ export default function Home() {
           >
             이메일 보내기
           </Link>
+        </div>
+
+        <div
+          className="animate-fade-up mt-16"
+          style={{ animationDelay: "400ms" }}
+        >
+          <MetricPulse />
         </div>
       </section>
 
