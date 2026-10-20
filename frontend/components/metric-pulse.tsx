@@ -27,7 +27,6 @@ export function MetricPulse() {
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeDasharray="80 2000"
-        vectorEffect="non-scaling-stroke"
         className="animate-pulse-travel text-foreground drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]"
       />
     </svg>
