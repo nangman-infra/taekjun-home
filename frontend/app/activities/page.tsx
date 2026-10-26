@@ -1,3 +1,4 @@
+import { DiagramFigure } from "@/components/diagram-figure";
 import { NANGMAN_ACTIVITIES } from "@/lib/activities";
 
 export default function ActivitiesPage() {
@@ -17,10 +18,11 @@ export default function ActivitiesPage() {
 
       {/* Activity list */}
       <div className="space-y-6">
-        {NANGMAN_ACTIVITIES.map((activity) => (
+        {NANGMAN_ACTIVITIES.map((activity, i) => (
           <article
             key={activity.title}
-            className="rounded-2xl border border-border/60 bg-card/30 p-6 sm:p-8"
+            style={{ animationDelay: `${i * 80}ms` }}
+            className="animate-fade-up rounded-2xl border border-border/60 bg-card/30 p-6 transition-colors duration-300 hover:border-border sm:p-8"
           >
             <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
               <h2 className="text-xl font-semibold">{activity.title}</h2>
@@ -34,6 +36,8 @@ export default function ActivitiesPage() {
             <p className="text-sm leading-relaxed text-muted-foreground">
               {activity.description}
             </p>
+
+            {activity.diagram && <DiagramFigure diagram={activity.diagram} />}
 
             {activity.impact && (
               <div className="mt-4 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3">

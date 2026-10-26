@@ -1,6 +1,18 @@
 import Link from "next/link";
 
-const PROJECTS = [
+import { DiagramFigure, type Diagram } from "@/components/diagram-figure";
+
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  linkLabel?: string;
+  diagram?: Diagram;
+};
+
+const PROJECTS: Project[] = [
   {
     id: 1,
     title: "NCP-UNIV",
@@ -34,6 +46,14 @@ const PROJECTS = [
     tags: ["NCP", "3-Tier", "Linux", "MySQL", "Prometheus", "Grafana"],
     link: "https://velog.io/@iamtaekjun/클라우드스퀘어-현장실습-2차-과제",
     linkLabel: "velog",
+    diagram: {
+      src: "/diagrams/cloudsquare-lms.webp",
+      alt: "나라장터 RFP 기반 LMS 인프라 아키텍처 (NCP)",
+      width: 1758,
+      height: 1800,
+      caption:
+        "2차 과제 · VPC 내 Private Subnet 3계층(Dev/App/DB), ALB 뒤 Web·WAS 2대, 관리자는 SSL VPN으로만 접근",
+    },
   },
   {
     id: 5,
@@ -71,15 +91,22 @@ export default function ProjectsPage() {
 
       {/* Project Grid */}
       <div className="divide-y divide-border/60 border-t border-border/60">
-        {PROJECTS.map((project) => (
+        {PROJECTS.map((project, i) => (
           <div
             key={project.id}
-            className="py-8"
+            style={{ animationDelay: `${i * 80}ms` }}
+            className="animate-fade-up py-8"
           >
             <h3 className="mb-2 font-semibold">{project.title}</h3>
             <p className="mb-4 text-sm text-muted-foreground">
               {project.description}
             </p>
+
+            {project.diagram && (
+              <div className="mb-4">
+                <DiagramFigure diagram={project.diagram} />
+              </div>
+            )}
 
             {/* Tags */}
             <div className="mb-4 flex flex-wrap gap-x-3 gap-y-1">

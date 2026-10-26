@@ -10,7 +10,10 @@
  *   (MTTR 단축, 오탐 감소, 복구 등 정량 결과). 수치는 실제값만, 지어내지 말 것.
  * - description 은 문제 → 행동 → 결과 흐름으로.
  * - featured: true 인 항목이 /about 상단 하이라이트로 노출된다(3개 권장).
+ * - diagram 은 /activities 에만 표시된다. 본인이 실제로 구성한 범위만 담을 것.
  */
+import type { Diagram } from "@/components/diagram-figure";
+
 export type Activity = {
   /** 카드 제목 */
   title: string;
@@ -26,6 +29,8 @@ export type Activity = {
   link?: string;
   /** /about 하이라이트로 노출할지 여부 */
   featured?: boolean;
+  /** 아키텍처 다이어그램 (public/diagrams/) */
+  diagram?: Diagram;
 };
 
 export const NANGMAN_ACTIVITIES: Activity[] = [
@@ -39,6 +44,14 @@ export const NANGMAN_ACTIVITIES: Activity[] = [
     stack: ["Zabbix", "Ansible", "AWX", "Grafana", "PSI", "Linux"],
     link: "https://velog.io/@iamtaekjun/PSI-지표-대시보드-구축기",
     featured: true,
+    diagram: {
+      src: "/diagrams/psi-pipeline.webp",
+      alt: "PSI 메모리 관측 파이프라인 아키텍처",
+      width: 2000,
+      height: 872,
+      caption:
+        "Host(/proc/pressure/memory) → Zabbix Template → Grafana 대시보드·알림 → Mattermost, 배포는 Ansible → AWX",
+    },
   },
   {
     title: "KREONET 세미나 발표 — 셀프호스팅 인프라 모니터링 구축 사례",
@@ -68,6 +81,14 @@ export const NANGMAN_ACTIVITIES: Activity[] = [
       "수집 장애를 허위 임계치 알림 대신 '수집 장애 · 인스턴스명'으로 알려, 알림만 보고 수집 장애와 실제 장애를 구분 가능",
     stack: ["Zabbix", "Grafana"],
     link: "https://velog.io/@iamtaekjun/Zabbix-모니터링-알람-체계-개선기",
+    diagram: {
+      src: "/diagrams/monitoring-hybrid.webp",
+      alt: "온프레미스·AWS 하이브리드 모니터링 수집 경로",
+      width: 1800,
+      height: 1509,
+      caption:
+        "대전 agent → 석촌 Zabbix proxy → VPN → AWS Zabbix server → Grafana (2026-07 발표 시점 구성)",
+    },
   },
   {
     title: "장애 분석 & 트러블슈팅",
