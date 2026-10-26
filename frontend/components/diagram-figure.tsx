@@ -18,7 +18,7 @@ export type Diagram = {
  * 아키텍처 다이어그램 썸네일. 클릭하면 전체 화면(dialog)으로 확대해 본다.
  * 원본 다이어그램이 흰 배경이라 다크 테마에서도 종이처럼 보이도록 흰 프레임에 담는다.
  */
-export function DiagramFigure({ diagram }: { diagram: Diagram }) {
+export function DiagramFigure({ diagram }: Readonly<{ diagram: Diagram }>) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
@@ -51,28 +51,33 @@ export function DiagramFigure({ diagram }: { diagram: Diagram }) {
       <dialog
         ref={dialogRef}
         aria-label={diagram.alt}
-        onClick={(e) => {
-          // 그림 바깥(backdrop) 클릭 시 닫기
-          if (e.target === e.currentTarget) e.currentTarget.close();
-        }}
-        className="m-auto max-h-[92vh] max-w-[min(1200px,94vw)] overflow-auto rounded-2xl bg-white p-4 backdrop:bg-black/80 backdrop:backdrop-blur-sm open:animate-zoom-in"
+        className="m-0 size-full max-h-none max-w-none bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
       >
+        {/* 그림 바깥을 누르면 닫히도록 화면 전체를 덮는 닫기 버튼 */}
         <button
           type="button"
           onClick={() => dialogRef.current?.close()}
           aria-label="닫기"
-          className="sticky top-0 ml-auto flex size-8 items-center justify-center rounded-full bg-black/70 text-white transition-colors hover:bg-black"
-        >
-          <X className="size-4" aria-hidden />
-        </button>
-        <Image
-          src={diagram.src}
-          alt={diagram.alt}
-          width={diagram.width}
-          height={diagram.height}
-          sizes="94vw"
-          className="h-auto w-full"
+          className="absolute inset-0 cursor-zoom-out"
         />
+        <div className="pointer-events-none relative flex size-full items-center justify-center p-4">
+          <div className="pointer-events-auto max-h-full w-full max-w-[1200px] overflow-auto rounded-2xl bg-white p-4 in-open:animate-zoom-in">
+            <Image
+              src={diagram.src}
+              alt={diagram.alt}
+              width={diagram.width}
+              height={diagram.height}
+              sizes="94vw"
+              className="h-auto w-full"
+            />
+          </div>
+        </div>
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-4 right-4 flex size-8 items-center justify-center rounded-full bg-black/70 text-white"
+        >
+          <X className="size-4" />
+        </span>
       </dialog>
     </figure>
   );

@@ -31,4 +31,14 @@ describe("DiagramFigure", () => {
 
     expect(showModal).toHaveBeenCalled();
   });
+
+  it("닫기 버튼을 누르면 dialog를 닫는다", () => {
+    const close = vi.fn();
+    HTMLDialogElement.prototype.close = close;
+    render(<DiagramFigure diagram={diagram} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "닫기", hidden: true }));
+
+    expect(close).toHaveBeenCalled();
+  });
 });
