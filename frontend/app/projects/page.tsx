@@ -56,6 +56,15 @@ const PROJECTS: Project[] = [
     },
   },
   {
+    id: 7,
+    title: "321km",
+    description:
+      "GPS로 실제 이동 거리를 감지해 남은 km를 실시간으로 카운트다운하는 세션 서비스입니다. 팀 프로젝트에서 인프라와 서버 이전을 맡아 Docker Compose 서비스(프론트·백엔드·PostgreSQL)를 새 온프레미스 서버로 옮기고, 다운타임 순서·pg_dumpall 백업·정합성 검증·롤백을 담은 런북을 작성했습니다. 운영 중 실시간 연결이 계속 끊긴다는 연락을 받고, /socket.io 요청이 프론트에서 308 리다이렉트되던 것을 찾아 프록시에서 백엔드로 직행시켜 약 45분 만에 복구했습니다.",
+    tags: ["Docker Compose", "PostgreSQL", "Nginx Proxy Manager", "WebSocket"],
+    link: "https://321km.nangman.cloud",
+    linkLabel: "Website",
+  },
+  {
     id: 5,
     title: "Budgetly",
     description:
